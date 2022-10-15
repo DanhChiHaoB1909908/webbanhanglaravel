@@ -79,6 +79,21 @@ Route::post('/save-cart','CartController@save_cart' );
 Route::post('/update-cart-quantity','CartController@update_cart_quantity' );
 Route::get('/show-cart','CartController@show_cart' );
 Route::get('/delete-to-cart/{rowId}','CartController@delete_to_cart' );
+Route::post('/add-cart-ajax','CartController@add_cart_ajax' ); //Them gio hang bang ajax
+Route::get('/gio-hang','CartController@gio_hang' ); // Hien thi cart bang ajax
+Route::post('/update-cart','CartController@update_cart'); //Cap nhat so luong trong gio hang bang ajax
+Route::get('/del-product/{session_id}','CartController@del_product' ); // Xoa san pham voi ajax
+Route::get('/del-all-product','CartController@del_all_product' ); // Xoa tat ca san pham voi ajax
+
+//Coupon
+Route::post('/check-coupon','CartController@check_coupon' );
+
+//Coupon admin
+Route::get('/insert-coupon','CouponController@insert_coupon' );
+Route::get('/unset-coupon','CouponController@unset_coupon' );
+Route::get('/list-coupon','CouponController@list_coupon' );
+Route::get('/delete-coupon/{coupon_id}','CouponController@delete_coupon' );
+Route::post('/insert-coupon-code','CouponController@insert_coupon_code' );
 
 
 // CheckOut
@@ -90,17 +105,26 @@ Route::post('/login-customer','CheckoutController@login_customer' );
 Route::get('/checkout','CheckoutController@checkout' );
 Route::get('/payment','CheckoutController@payment' );
 Route::post('/save-checkout-customer','CheckoutController@save_checkout_customer' );
+// Moi them cung trong phan Checkout
+Route::post('/select-delivery-home','CheckoutController@select_delivery_home' );
+Route::post('/calculate-fee','CheckoutController@calculate_fee' );
+Route::get('/del-fee','CheckoutController@del_fee' );
+Route::post('/confirm-order','CheckoutController@confirm_order' );
 
 
 
 // Order admin
-Route::get('/manage-order','CheckoutController@manage_order' );
-Route::get('/view-order/{orderId}','CheckoutController@view_order' );
+// Route::get('/manage-order','CheckoutController@manage_order' );
+// Route::get('/view-order/{orderId}','CheckoutController@view_order' );
 Route::get('/view-order-customer/{orderId}','CheckoutController@view_order_customer' );
 Route::get('/delete-order/{orderId}','CheckoutController@delete_order' );
 
 Route::get('/active-order-status/{order_id}','CheckoutController@active_order_status' );
 Route::get('/unactive-order-status/{order_id}','CheckoutController@unactive_order_status' );
+// Order admin moi
+Route::get('/manage-order','OrderController@manage_order' );
+Route::get('/view-order/{order_code}','OrderController@view_order' );
+Route::get('/print-order/{checkout_code}','OrderController@print_order' );
 
 
 
@@ -150,4 +174,11 @@ Route::get('/show-contact','ContactController@show_contact' );
 
 // Thành viên
 Route::get('/all-customer','CustomerController@all_customer' );
+
+//Delivery Vận chuyển
+Route::get('/delivery','DeliveryController@delivery' );
+Route::post('/select-delivery','DeliveryController@select_delivery' );
+Route::post('/insert-delivery','DeliveryController@insert_delivery' );
+Route::post('/select-feeship','DeliveryController@select_feeship' );
+Route::post('/update-delivery','DeliveryController@update_delivery' );
 
